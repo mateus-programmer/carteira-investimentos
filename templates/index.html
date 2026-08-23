@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <title>Minha Carteira de Criptomoedas</title>
+    <style>
+        body { font-family: Arial, sans-serif; background-color: #f4f4f9; margin: 0; padding: 40px; }
+        .container { max-width: 900px; margin: auto; background: white; padding: 30px; border-radius: 8px; box-shadow: 0 4px 10px rgba(0,0,0,0.1); }
+        h1 { text-align: center; color: #333; }
+        table { width: 100%; border-collapse: collapse; margin-top: 20px; }
+        th, td { padding: 12px; text-align: left; border-bottom: 1px solid #ddd; }
+        th { background-color: #2c3e50; color: white; }
+        .total-geral { margin-top: 20px; text-align: right; font-size: 1.2em; font-weight: bold; color: #2c3e50; }
+        .btn { display: inline-block; margin-top: 20px; padding: 10px 15px; background-color: #3498db; color: white; text-decoration: none; border-radius: 4px; }
+        .btn:hover { background-color: #2980b9; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Minha Carteira de Criptomoedas</h1>
+        
+        <table>
+            <thead>
+                <tr>
+                    <th>Nome</th>
+                    <th>Símbolo</th>
+                    <th>Quantidade</th>
+                    <th>Preço Médio (R$)</th>
+                    <th>Valor Total (R$)</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for cripto in criptos %}
+                <tr>
+                    <td>{{ cripto.nome }}</td>
+                    <td><b>{{ cripto.simbolo }}</b></td>
+                    <td>{{ cripto.quantidade }}</td>
+                    <td>R$ {{ cripto.preco_medio_fmt() }}</td>
+                    <td>R$ {{ cripto.valor_total_fmt() }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+
+        <div class="total-geral">
+            Patrimônio Total: R$ {{ patrimonio_total_fmt }}
+        </div>
+
+        <a href="/cripto/nova" class="btn">+ Adicionar Novo Ativo</a>
+    </div>
+</body>
+</html>
